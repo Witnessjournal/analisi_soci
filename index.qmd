@@ -1,0 +1,15 @@
+---
+title: "Informazioni sull'Associazione"
+format: html
+---
+
+Queste pagine contengono alcune analisi sull'associazione [Witness Journal](https://witnessjournal.org/), in particolare sui soci e le socie. I dati sono stati raccolti in modo anonimo e non contengono informazioni identificative. Le analisi sono state effettuate per scopi informativi e statistici, senza alcuna intenzione di violare la privacy dei soci e delle socie.
+
+## Situazione soci
+
+La pagina [Situazione soci](situazione_soci.qmd) contiene un'analisi dello stato attuale dell'associazione, tipicamente aggiornato ogni mese.
+
+
+## Storico
+
+La pagina [Storico](storico.qmd) presenta un'evoluzione storica dell'associazione, a partire dall'Aprile 2025.

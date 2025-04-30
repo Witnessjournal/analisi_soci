@@ -1,0 +1,168 @@
+---
+title: "Situazione Soci"
+date: today
+format: 
+  revealjs:
+    code-fold: true
+---
+
+```{r setup}
+#| include: false
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+library(tidyverse)
+library(stringr)
+library(tmap)
+library(sf)
+library(glue)
+```
+
+```{r}
+data <- read_csv("Soci2025-04-28.csv")
+
+province <- read_tsv("province.txt", na=c("")) %>% 
+  mutate(
+    PROVINCIA = str_to_upper(PROVINCIA) %>% 
+      str_replace_all("[\\s]", "-"),
+    SIGLA = str_replace(SIGLA, "Roma", "RM")
+  )
+
+soci <- data %>% 
+  rename_with(
+    ~ str_replace_all(.x, "Indirizzo\\s", ""),
+    everything()
+  ) %>% 
+  select(Cognome, `Codice Fiscale`, `Data Nascita`, CAP, Città, Provincia, Nazione, Stato) %>% 
+  mutate(
+    Età = interval(ymd(`Data Nascita`), today()) %/% years(1),
+    Provincia = str_to_upper(Provincia) %>% 
+      str_replace_all("[\\s]", "-")
+  ) %>% 
+  left_join(
+    province, 
+    by = c("Provincia" = "PROVINCIA")
+  ) %>% 
+  mutate(
+    SIGLA = ifelse(is.na(SIGLA), Provincia, SIGLA),
+    Città = str_to_title(Città)
+  ) %>% 
+  select(-c(Provincia, CAP, REGIONE)) %>%
+  rename(Provincia = SIGLA) %>%
+  filter(!is.na(Cognome)) %>% 
+  select(-Cognome) 
+```
+
+
+## Sorgente dati
+
+```{r}
+N <- nrow(soci)
+```
+
+* I dati qui riportati sono stati estratti da Winddoc via API il 28/4/2025
+* Il libro soci attualmente contiene `r N` elementi
+
+
+## Posizione sociale
+
+Attualmente, le posizioni sociali sono così distribuite:
+
+```{r}
+soci %>% 
+  mutate(Stato = str_replace(Stato, "8", "Pendente rinnovo")) %>%
+  group_by(Stato) %>% 
+  summarise(Numero = n()) %>% 
+  arrange(desc(Numero)) %>% 
+  knitr::kable()
+```
+
+
+
+
+## Numerosità per provincia {.smaller}
+
+A livello nazionale, i soci sono distribuiti in `r length(unique(soci$provincia))` province, di cui:
+
+:::{.columns}
+:::{.column width="50%"}
+
+```{r}
+soci_n <- soci %>% 
+  group_by(Provincia) %>% 
+  summarise(Numero = n()) %>% 
+  arrange(desc(Numero))
+
+soci_n %>% 
+  filter(Numero > 5) %>% 
+  knitr::kable()
+```
+:::
+
+:::{.column width="50%"}
+```{r}
+#| echo: false
+#| fig.width: 4
+#| fig.height: 5
+#| fig.align: "center"
+shapefile <-  "maps/georef-italy-provincia-millesime.shp"
+italy <- read_sf(shapefile)
+# italy <- rmapshaper::ms_simplify(italy, keep=0.1)
+
+map <- italy %>% 
+  left_join(soci_n, by = c("prov_sigla" = "Provincia")) %>%
+  tm_shape(simplify=0.05) + 
+  tm_borders() +
+  tm_fill(
+    col = "Numero", 
+    style = "jenks", 
+    title = "Numero soci WJ", 
+    textNA="Nessuno", 
+    legend.format=list(text.separator = "-")
+  )
+tmap_mode("plot")
+map
+```
+:::
+:::
+
+## Distribuzione di età
+
+```{r}
+soci %>% {
+    ggplot(., aes(x = Età)) +
+    geom_histogram(binwidth = 5, fill = "steelblue", color = "black") +
+    geom_vline(xintercept = mean(.$Età, na.rm = TRUE), linetype = "dashed", color = "red") +
+    geom_vline(xintercept = median(.$Età, na.rm = TRUE), linetype = "dashed", color = "green") +
+    scale_x_continuous(breaks = seq(0, 100, 5)) +
+    labs(y="Conteggio", title=glue("Distribuzione età soci: Media: {round(mean(.$Età, na.rm = TRUE), 1)} anni, Mediana: {round(median(.$Età, na.rm = TRUE), 1)} anni"))
+  }
+```
+
+```{r}
+quantile(soci$Età)
+```
+
+
+## Maschi Femmine
+
+```{r}
+soci %>% 
+  mutate(
+    Genere = str_sub(`Codice Fiscale`, 10, 11) %>% as.numeric(),
+    MF = ifelse(Genere>30, "F", "M"),
+    .after=`Codice Fiscale`
+  ) %>%
+  group_by(MF) %>%
+  summarise(
+    Coteggio = n(),
+    `Età Media` = mean(Età, na.rm = TRUE) %>% round(1),
+    `Età Minima` = min(Età, na.rm = TRUE),
+    `Età Massima` = max(Età, na.rm = TRUE)
+  ) %>% 
+  knitr::kable()
+  
+```
+

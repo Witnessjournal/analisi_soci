@@ -1,0 +1,14 @@
+.RData
+.Rhistory
+.Rproj.user
+/.quarto/
+/cache
+/_site
+
+*.csv
+*.html
+*.xls*
+*_files
+*tokens.R
+
+/.quarto/

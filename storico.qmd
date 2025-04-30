@@ -1,0 +1,58 @@
+---
+title: "Storico"
+format: html
+---
+
+```{r setup}
+#| include: false
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	fig.width = 6,
+  fig.height = 5,
+  fig.align = "center",
+  out.width = "100%",
+  dpi = 300
+)
+library(tidyverse)
+library(stringr)
+library(glue)
+library(plotly)
+```
+
+
+:::{.callout-warning}
+Pagina in costruzione.
+:::
+
+
+```{r}
+storico <- read_csv("storico.csv")
+```
+
+## Crescita storica dei soci
+
+Questo grafico riporta la crescita storica dei soci afferenti complessivi e afferenti ai gruppi territoriali più numerosi (con più di sei soci). Il grafico **è interattivo**.
+
+```{r}
+#| fig.width: 8
+#| fig.height: 4
+plt <- storico %>% 
+  pivot_longer(
+    cols = starts_with("prov_"), 
+    names_to = "Provincia", 
+    values_to = "Soci locali"
+  ) %>% 
+  filter(`Soci locali` > 6) %>% 
+  ggplot(aes(x=Data)) + 
+  geom_line(aes(y=`Soci locali`, color=Provincia)) +
+  geom_line(aes(y=Soci, color="Soci totali"), size=1) +
+  scale_x_date(
+    date_labels = "%Y-%m", 
+    date_breaks = "3 month", 
+    minor_breaks = "1 month")
+
+ggplotly(plt, width=650, height=400)
+```
+
