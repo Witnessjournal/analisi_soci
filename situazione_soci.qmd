@@ -190,8 +190,13 @@ soci %>% {
 
 ::: columns
 :::{.column width="50%"}
+
+Dati complessivi:
+
 ```{r}
+#| tab.cap="Distribuzione per genere ed età"
 soci %>%
+  mutate(genere = ifelse(genere == "M", "Maschio", "Femmina")) %>%
   group_by(Genere = genere) %>%
   summarise(
     Numero = n(),
@@ -200,12 +205,16 @@ soci %>%
     eta_max = max(età, na.rm = TRUE)
   ) %>% 
   mutate(
-    `Età` = glue("{Età} ({eta_min}-{eta_max})")
+    `min-max` = glue("{eta_min}-{eta_max}")
   ) %>%
   select(-c(eta_min, eta_max)) %>%
-  knitr::kable()
+  knitr::kable(align=c('l', 'r', 'r', 'r'))
+```
 
-soci_n %>% mutate(Prevalenza=ifelse(M>F, "maschi", "femmine")) %>% 
+
+```{r}
+#| tab.cap="Prevalenza di genere su base geografica"
+soci_n %>% mutate(Prevalenza=ifelse(M>F, "Maschi", "Femmine")) %>% 
   group_by(Prevalenza) %>% 
   summarise(`Numero province`=n()) %>% 
   knitr::kable()
