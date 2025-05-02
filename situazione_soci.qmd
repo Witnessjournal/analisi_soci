@@ -38,7 +38,7 @@ N <- nrow(soci)
 * Il libro soci attualmente contiene **`r N`** elementi
 
 
-## Posizione sociale
+## Posizione associativa
 
 Risultano iscritti **`r N`** soci con le seguenti posizioni associative:
 
@@ -51,16 +51,24 @@ soci %>%
   knitr::kable()
 ```
 
+Le provice con il maggior numero di quote non rinnovate ad oggi sono:
 
+```{r}
+soci %>% 
+  group_by(provincia) %>% 
+  summarise(
+    Soci = n(),
+    `Soci in regola` = sum(!deve_rinnovare),
+    `Soci da rinnovare` = sum(deve_rinnovare)
+  ) %>% 
+  arrange(desc(`Soci da rinnovare`)) %>% 
+  slice_head(n=10) %>% 
+  knitr::kable()
+```
 
-
-## Numerosità per provincia
 
 * Su `r N` soci, `r filter(soci, nazione == "IT") %>% nrow()` sono in Italia
 * A livello nazionale, i soci sono distribuiti in `r length(unique(soci$provincia))` province, di cui:
-
-:::{.columns}
-:::{.column width="50%"}
 
 ```{r}
 soci_n <- soci %>% 
@@ -72,14 +80,16 @@ soci_n <- soci %>%
     values_from = Numero
   ) %>%
   mutate(Totale = sum(M, F, na.rm=TRUE)) %>%
-  arrange(desc(Totale))
+  arrange(desc(Totale)) %>% 
+  replace_na(list(M = 0, F = 0)) 
 
 soci_n %>% 
   filter(Totale > 5) %>% 
   knitr::kable()
 ```
-:::
 
+
+:::{.columns}
 :::{.column width="50%"}
 ```{r}
 #| echo: false
@@ -99,6 +109,42 @@ map <- italy %>%
     col = "Totale", 
     style = "jenks", 
     title = "Numero soci WJ", 
+    textNA="Nessuno", 
+    legend.format=list(text.separator = "-")
+  )
+tmap_mode("plot")
+map
+```
+:::
+
+:::{.column width="50%"}
+
+```{r}
+#| echo: false
+#| fig.width: 4
+#| fig.height: 5
+#| fig.align: "center"
+#| out.width: "75%"
+shapefile <-  "maps/georef-italy-provincia-millesime.shp"
+italy <- read_sf(shapefile)
+# italy <- rmapshaper::ms_simplify(italy, keep=0.1)
+
+soci_scad <- soci %>% 
+  group_by(provincia) %>% 
+  summarise(
+    Soci = n(),
+    `Soci in regola` = sum(!deve_rinnovare),
+    `Soci da rinnovare` = sum(deve_rinnovare)
+  ) 
+
+map <- italy %>% 
+  left_join(soci_scad, by = c("prov_sigla" = "provincia")) %>%
+  tm_shape(simplify=0.05) + 
+  tm_borders() +
+  tm_fill(
+    col = "Soci da rinnovare", 
+    style = "jenks", 
+    title = "Numero soci\nda rinnovare", 
     textNA="Nessuno", 
     legend.format=list(text.separator = "-")
   )
@@ -158,7 +204,11 @@ soci %>%
   ) %>%
   select(-c(eta_min, eta_max)) %>%
   knitr::kable()
-  
+
+soci_n %>% mutate(Prevalenza=ifelse(M>F, "maschi", "femmine")) %>% 
+  group_by(Prevalenza) %>% 
+  summarise(`Numero province`=n()) %>% 
+  knitr::kable()
 ```
 :::
 

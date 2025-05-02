@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 	message = FALSE,
 	warning = FALSE,
 	fig.width = 6,
-  fig.height = 5,
+  fig.height = 3,
   fig.align = "center",
   out.width = "100%",
   dpi = 300
@@ -117,4 +117,17 @@ plt <- storico %>%
 
 ggplotly(plt, width=650, height=400)
 ```
+
+Per quanto riguarda la crescita **effettiva** cioè depurata dei soci non che non hanno *ancora* rinnovato la quota associativa, il grafico è il seguente:
+
+```{r}
+storico %>% 
+  ggplot(aes(x=Data)) +
+  geom_line(aes(y=Soci, color="Totale")) +
+  geom_line(aes(y=`Soci in regola`, color="In regola")) +
+  geom_line(aes(y=`Soci da rinnovare`, color="Da rinnovare")) + 
+  labs(color="Stato associativo")
+```
+
+
 
