@@ -1,5 +1,6 @@
 ---
 title: "Storico"
+date: today
 format: html
 ---
 
@@ -30,7 +31,17 @@ source("wj_utils.R")
 Pagina in costruzione.
 :::
 
+## Sorgente dati
 
+
+```{r}
+soci <- wj_data(wj_tokens()) %>% wj_soci()
+N <- nrow(soci)
+```
+
+* I dati qui riportati sono stati estratti il **`r Sys.Date()`**
+* I dati classificati per settimane di calendario
+* Il libro soci attualmente contiene **`r N`** elementi
 
 ```{r}
 soci <- wj_data(wj_tokens()) %>% wj_soci()
@@ -98,8 +109,6 @@ storico <- storico %>%
 Questo grafico riporta la crescita storica dei soci afferenti complessivi e afferenti ai gruppi territoriali più numerosi (con più di sei soci). Il grafico **è interattivo**.
 
 ```{r}
-#| fig.width: 8
-#| fig.height: 4
 plt <- storico %>% 
   pivot_longer(
     cols = starts_with("prov_"), 
@@ -109,16 +118,16 @@ plt <- storico %>%
   filter(`Soci locali` > 6) %>% 
   ggplot(aes(x=Data)) + 
   geom_line(aes(y=`Soci locali`, color=Provincia)) +
-  geom_line(aes(y=Soci, color="Soci totali"), size=1) +
+  # geom_line(aes(y=Soci, color="Soci totali"), size=1) +
   scale_x_date(
-    date_labels = "%Y-%m", 
+    date_labels = "%m/'%y", 
     date_breaks = "3 month", 
     minor_breaks = "1 month")
-
-ggplotly(plt, width=650, height=400)
+plt
+# ggplotly(plt, width=650, height=400)
 ```
 
-Per quanto riguarda la crescita **effettiva** cioè depurata dei soci non che non hanno *ancora* rinnovato la quota associativa, il grafico è il seguente:
+Per quanto riguarda la crescita **effettiva**, cioè depurata dei soci non che non hanno *ancora* rinnovato la quota associativa, il grafico è il seguente:
 
 ```{r}
 storico %>% 
@@ -126,7 +135,11 @@ storico %>%
   geom_line(aes(y=Soci, color="Totale")) +
   geom_line(aes(y=`Soci in regola`, color="In regola")) +
   geom_line(aes(y=`Soci da rinnovare`, color="Da rinnovare")) + 
-  labs(color="Stato associativo")
+  labs(color="Stato associativo") +
+  scale_x_date(
+    date_labels = "%m/'%y", 
+    date_breaks = "3 month", 
+    minor_breaks = "1 month")
 ```
 
 

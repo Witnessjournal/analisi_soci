@@ -3,6 +3,7 @@ title: |
   Situazione Soci
 subtitle: |
   Analisi della composizione sociale
+date: today
 ---
 
 ```{r setup}
@@ -12,7 +13,7 @@ knitr::opts_chunk$set(
 	message = FALSE,
 	warning = FALSE,
 	fig.width = 6,
-  fig.height = 5,
+  fig.height = 3,
   fig.align = "center",
   out.width = "100%",
   dpi = 300
@@ -51,21 +52,6 @@ soci %>%
   knitr::kable()
 ```
 
-Le provice con il maggior numero di quote non rinnovate ad oggi sono:
-
-```{r}
-soci %>% 
-  group_by(provincia) %>% 
-  summarise(
-    Soci = n(),
-    `Soci in regola` = sum(!deve_rinnovare),
-    `Soci da rinnovare` = sum(deve_rinnovare)
-  ) %>% 
-  arrange(desc(`Soci da rinnovare`)) %>% 
-  slice_head(n=10) %>% 
-  knitr::kable()
-```
-
 
 * Su `r N` soci, `r filter(soci, nazione == "IT") %>% nrow()` sono in Italia
 * A livello nazionale, i soci sono distribuiti in `r length(unique(soci$provincia))` province, di cui:
@@ -88,6 +74,20 @@ soci_n %>%
   knitr::kable()
 ```
 
+Le provice con il maggior numero di quote **non rinnovate** ad oggi sono:
+
+```{r}
+soci %>% 
+  group_by(provincia) %>% 
+  summarise(
+    Soci = n(),
+    `Soci in regola` = sum(!deve_rinnovare),
+    `Soci da rinnovare` = sum(deve_rinnovare)
+  ) %>% 
+  arrange(desc(`Soci da rinnovare`)) %>% 
+  slice_head(n=10) %>% 
+  knitr::kable()
+```
 
 :::{.columns}
 :::{.column width="50%"}
@@ -96,7 +96,7 @@ soci_n %>%
 #| fig.width: 4
 #| fig.height: 5
 #| fig.align: "center"
-#| out.width: "75%"
+#| out.width: "90%"
 shapefile <-  "maps/georef-italy-provincia-millesime.shp"
 italy <- read_sf(shapefile)
 # italy <- rmapshaper::ms_simplify(italy, keep=0.1)
@@ -124,7 +124,7 @@ map
 #| fig.width: 4
 #| fig.height: 5
 #| fig.align: "center"
-#| out.width: "75%"
+#| out.width: "90%"
 shapefile <-  "maps/georef-italy-provincia-millesime.shp"
 italy <- read_sf(shapefile)
 # italy <- rmapshaper::ms_simplify(italy, keep=0.1)
@@ -156,22 +156,8 @@ map
 
 ## Distribuzione di età
 
-:::{.columns}
+L'ètà dei soci è così distribuita:
 
-:::{.column width="50%"}
-In quantili, la distribuzione di età dei soci è la seguente:
-```{r}
-quantile(soci$età, na.rm = TRUE) %>% broom::tidy() %>% 
-  rename(
-    Quantile = names,
-    Età = x
-  ) %>% 
-  knitr::kable()
-```
-
-:::
-
-:::{.column width="50%"}
 ```{r}
 soci %>% {
     ggplot(., aes(x = età)) +
@@ -182,24 +168,31 @@ soci %>% {
     labs(y="Conteggio", title=glue("Distribuzione età soci: Media: {round(mean(.$età, na.rm = TRUE), 1)} anni, Mediana: {round(median(.$età, na.rm = TRUE), 1)} anni"))
   }
 ```
-:::
-:::
+
+```{r}
+#| tab.cap="Distribuzione per quantili di età"
+quantile(soci$età, na.rm = TRUE) %>% broom::tidy() %>% 
+  rename(
+    Quantile = names,
+    Età = x
+  ) %>% 
+  knitr::kable()
+```
 
 
 ## Distribuzione per genere
 
+Queste tabelle riportano la distribuzione per genere ed età, e la prevalenza di genere per ciascuna provincia.
+
 ::: columns
-:::{.column width="50%"}
-
-Dati complessivi:
-
+:::{.column width="49%"}
 ```{r}
 #| tab.cap="Distribuzione per genere ed età"
 soci %>%
   mutate(genere = ifelse(genere == "M", "Maschio", "Femmina")) %>%
   group_by(Genere = genere) %>%
   summarise(
-    Numero = n(),
+    Num. = n(),
     `Età` = mean(età, na.rm = TRUE) %>% round(1),
     eta_min = min(età, na.rm = TRUE),
     eta_max = max(età, na.rm = TRUE)
@@ -211,6 +204,12 @@ soci %>%
   knitr::kable(align=c('l', 'r', 'r', 'r'))
 ```
 
+:::
+
+:::{.column width="2%"}
+:::
+
+:::{.column width="49%"}
 
 ```{r}
 #| tab.cap="Prevalenza di genere su base geografica"
@@ -220,8 +219,8 @@ soci_n %>% mutate(Prevalenza=ifelse(M>F, "Maschi", "Femmine")) %>%
   knitr::kable()
 ```
 :::
+:::
 
-:::{.column width="50%"}
 ```{r}
 #| echo: false
 #| fig.width: 4
@@ -244,8 +243,7 @@ map <- italy %>%
 tmap_mode("plot")
 map
 ```
-:::
-:::
+
 
 
 
