@@ -17,8 +17,12 @@ knitr::opts_chunk$set(
 )
 library(tidyverse)
 library(stringr)
+library(tmap)
+library(sf)
 library(glue)
 library(plotly)
+source("wj_utils.R")
+
 ```
 
 
@@ -27,9 +31,67 @@ Pagina in costruzione.
 :::
 
 
+
 ```{r}
-storico <- read_csv("storico.csv")
+soci <- wj_data(wj_tokens()) %>% wj_soci()
 ```
+
+
+```{r}
+storico <- soci %>% 
+  arrange(data_iscrizione) %>% 
+  mutate(
+    week = format(ymd(data_iscrizione), "%Y-%V"),
+    .after = 1
+  ) %>% 
+  group_by(week) %>%
+  summarise(
+    Data = last(data_iscrizione) %>% ymd(),
+    Soci = n(),
+    `Soci in regola` = sum(!deve_rinnovare),
+    `Soci da rinnovare` = sum(deve_rinnovare),
+    Maschi = sum(genere == "M", na.rm = TRUE),
+    Femmine = sum(genere == "F", na.rm = TRUE),
+    `Soci in Italia` = sum(nazione == "IT", na.rm = TRUE),
+    `Soci all'estero` = sum(nazione != "IT", na.rm = TRUE)
+  ) %>% 
+  mutate(
+    across(-c(week, Data), cumsum)
+  )
+```
+
+
+
+```{r}
+prov_count <- soci %>% 
+  filter(!is.na(provincia)) %>% 
+  arrange(data_iscrizione) %>% 
+  mutate(
+    week = format(ymd(data_iscrizione), "%Y-%V"),
+    .after = 1
+  ) %>% 
+  group_by(week, provincia) %>% 
+  select(provincia, week, data_iscrizione) %>% 
+  summarise(
+    Numero = n()
+  ) %>% 
+  pivot_wider(
+    names_from = provincia, 
+    names_prefix = "prov_",
+    values_from = Numero
+  ) %>% 
+  ungroup() %>% 
+  mutate(
+    across(2:last_col(), ~replace_na(., 0))
+  ) %>%
+  mutate(across(2:last_col(), cumsum))
+
+storico <- storico %>% 
+  left_join(prov_count) %>% 
+  select(-week) %>% 
+  write_csv("storico.csv", col_names=TRUE, append=FALSE)
+```
+
 
 ## Crescita storica dei soci
 

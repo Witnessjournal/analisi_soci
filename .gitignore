@@ -10,5 +10,6 @@
 *.xls*
 *_files
 *tokens.R
+*.old 
 
 /.quarto/

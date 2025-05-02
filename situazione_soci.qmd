@@ -23,57 +23,18 @@ library(tmap)
 library(sf)
 library(glue)
 source("wj_utils.R")
-source("winddoc_tokens.R")
 
-wj_list_associates_lazy <- memoise::memoise(
-  wj_list_associates, 
-  cache = cachem::cache_disk(max_age = 3600*24, dir="cache"))
 
-raw_data <- wj_list_associates_lazy(tokens)
-province <- read_tsv("province.txt", na=c("")) 
-```
-
-```{r}
-data <- raw_data %>% 
-  select(
-    nome, cognome, codice_fiscale, data_iscrizione, 
-    data_nascita = contatto_data_nascita,
-    contatto_indirizzo_citta, contatto_indirizzo_cap,
-    contatto_indirizzo_provincia, contatto_indirizzo_nazione,
-    data_iscrizione, data_scadenza_quota, deve_rinnovare
-  ) %>% 
-  rename_with(
-    ~ str_replace_all(.x, "contatto_indirizzo_", ""),
-    everything()
-  )
-
-soci <- data %>% 
-  mutate(
-    età = interval(ymd(data_nascita), today()) %/% years(1),
-    provincia = str_to_upper(provincia) %>% 
-      str_replace_all("[\\s]+$", "") %>% 
-      str_replace_all("[\\s]", "-")
-  ) %>% 
-  relocate(età, .after = data_nascita) %>%
-  left_join(
-    province, 
-    by = c("provincia" = "PROVINCIA")
-  ) %>% 
-  # relocate(SIGLA, .after=provincia) %>% 
-  mutate(
-    provincia = ifelse(is.na(SIGLA), provincia, SIGLA),
-    citta = str_to_title(citta),
-    genere_n = str_sub(codice_fiscale, 10, 11) %>% as.numeric(),
-    genere = ifelse(genere_n>30, "F", "M")
-  ) %>% 
-  select(-c(SIGLA, REGIONE, genere_n)) %>% 
-  relocate(genere, .after=età)
-
-N <- nrow(soci)
 ```
 
 
 ## Sorgente dati
+
+
+```{r}
+soci <- wj_data(wj_tokens()) %>% wj_soci()
+N <- nrow(soci)
+```
 
 * I dati qui riportati sono stati estratti il **`r Sys.Date()`**
 * Il libro soci attualmente contiene **`r N`** elementi
@@ -230,61 +191,6 @@ map
 :::
 
 
-
-```{r}
-storico <- soci %>% 
-  arrange(data_iscrizione) %>% 
-  mutate(
-    week = format(ymd(data_iscrizione), "%Y-%V"),
-    .after = 1
-  ) %>% 
-  group_by(week) %>%
-  summarise(
-    Data = last(data_iscrizione) %>% ymd(),
-    Soci = n(),
-    `Soci in regola` = sum(!deve_rinnovare),
-    `Soci da rinnovare` = sum(deve_rinnovare),
-    Maschi = sum(genere == "M", na.rm = TRUE),
-    Femmine = sum(genere == "F", na.rm = TRUE),
-    `Soci in Italia` = sum(nazione == "IT", na.rm = TRUE),
-    `Soci all'estero` = sum(nazione != "IT", na.rm = TRUE)
-  ) %>% 
-  mutate(
-    across(-c(week, Data), cumsum)
-  )
-```
-
-
-
-```{r}
-prov_count <- soci %>% 
-  filter(!is.na(provincia)) %>% 
-  arrange(data_iscrizione) %>% 
-  mutate(
-    week = format(ymd(data_iscrizione), "%Y-%V"),
-    .after = 1
-  ) %>% 
-  group_by(week, provincia) %>% 
-  select(provincia, week, data_iscrizione) %>% 
-  summarise(
-    Numero = n()
-  ) %>% 
-  pivot_wider(
-    names_from = provincia, 
-    names_prefix = "prov_",
-    values_from = Numero
-  ) %>% 
-  ungroup() %>% 
-  mutate(
-    across(2:last_col(), ~replace_na(., 0))
-  ) %>%
-  mutate(across(2:last_col(), cumsum))
-
-storico %>% 
-  left_join(prov_count) %>% 
-  select(-week) %>% 
-  write_csv("storico.csv", col_names=TRUE, append=FALSE)
-```
 
 
 
