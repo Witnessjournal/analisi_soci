@@ -65,8 +65,8 @@ wj_data <- function(tokens, url = "https://app.winddoc.com/v1/api_json.php") {
                 everything())
 }
 
-wj_soci <- function(data) {
-  province <- read_tsv("province.txt", na = c(""))
+wj_soci <- function(data, province_file = "data/province.txt") {
+  province <- read_tsv(province_file, na = c(""))
   data %>% 
     mutate(
       età = interval(ymd(data_nascita), today()) %/% years(1),

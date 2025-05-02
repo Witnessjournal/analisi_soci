@@ -23,8 +23,6 @@ library(tmap)
 library(sf)
 library(glue)
 source("wj_utils.R")
-
-
 ```
 
 
