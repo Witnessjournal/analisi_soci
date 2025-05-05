@@ -26,6 +26,10 @@ library(glue)
 source("wj_utils.R")
 ```
 
+:::{.callout-warning}
+Pagina in costruzione.
+:::
+
 
 ## Sorgente dati
 
@@ -160,12 +164,18 @@ L'ètà dei soci è così distribuita:
 
 ```{r}
 soci %>% {
-    ggplot(., aes(x = età)) +
-    geom_histogram(binwidth = 5, fill = "steelblue", color = "black") +
+    ggplot(., aes(x = età, fill=genere)) +
+    geom_histogram(binwidth = 5, color = "black") +
     geom_vline(xintercept = mean(.$età, na.rm = TRUE), linetype = "dashed", color = "red") +
     geom_vline(xintercept = median(.$età, na.rm = TRUE), linetype = "dashed", color = "green") +
     scale_x_continuous(breaks = seq(0, 100, 5)) +
-    labs(y="Conteggio", title=glue("Distribuzione età soci: Media: {round(mean(.$età, na.rm = TRUE), 1)} anni, Mediana: {round(median(.$età, na.rm = TRUE), 1)} anni"))
+    labs(y="Conteggio", title=glue("Distribuzione età soci: Media: {round(mean(.$età, na.rm = TRUE), 1)} anni, Mediana: {round(median(.$età, na.rm = TRUE), 1)} anni")) +
+    scale_x_continuous(
+      breaks = scales::breaks_width(5),
+      minor_breaks = scales::minor_breaks_n(0)) +
+    scale_y_continuous(
+      breaks = scales::breaks_width(10),
+      minor_breaks = scales::minor_breaks_n(6))
   }
 ```
 
