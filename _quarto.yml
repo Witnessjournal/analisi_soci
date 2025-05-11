@@ -7,7 +7,7 @@ project:
   #   - "CNAME"
 website:
   title: "Informazioni su WJ"
-  site-url: "https://witnessjournal.github.io/analisi_soci/"
+  site-url: "https://soci.witnessjournal.com"
   description: "Dati sull'Associazione WJ"
   navbar:
     left:

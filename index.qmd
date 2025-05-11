@@ -7,7 +7,7 @@ Queste pagine contengono alcune analisi sull'associazione [Witness Journal](http
 
 ## Situazione soci
 
-La pagina [Situazione soci](situazione_soci.qmd) contiene un'analisi dello stato attuale dell'associazione, tipicamente aggiornato ogni mese.
+La pagina [Situazione soci](situazione_soci.qmd) contiene un'analisi dello stato attuale dell'associazione, tipicamente aggiornato ogni settimana.
 
 
 ## Storico
