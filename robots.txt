@@ -1,1 +1,1 @@
-Sitemap: https://witnessjournal.github.io/analisi_soci/sitemap.xml
+Sitemap: https://soci.witnessjournal.com/sitemap.xml

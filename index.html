@@ -146,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Queste pagine contengono alcune analisi sull’associazione <a href="https://witnessjournal.org/">Witness Journal</a>, in particolare sui soci e le socie. I dati sono stati raccolti in modo anonimo e non contengono informazioni identificative. Le analisi sono state effettuate per scopi informativi e statistici, senza alcuna intenzione di violare la privacy dei soci e delle socie.</p>
 <section id="situazione-soci" class="level2">
 <h2 class="anchored" data-anchor-id="situazione-soci">Situazione soci</h2>
-<p>La pagina <a href="./situazione_soci.html">Situazione soci</a> contiene un’analisi dello stato attuale dell’associazione, tipicamente aggiornato ogni mese.</p>
+<p>La pagina <a href="./situazione_soci.html">Situazione soci</a> contiene un’analisi dello stato attuale dell’associazione, tipicamente aggiornato ogni settimana.</p>
 </section>
 <section id="storico" class="level2">
 <h2 class="anchored" data-anchor-id="storico">Storico</h2>
@@ -228,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/witnessjournal\.github\.io\/analisi_soci\/");
+        var filterRegex = new RegExp("https:\/\/soci\.witnessjournal\.com");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
