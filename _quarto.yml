@@ -3,8 +3,8 @@ project:
   preview:
     port: 8080
     host: localhost
-  # resources:
-  #   - "CNAME"
+  resources:
+    - "CNAME"
 website:
   title: "Informazioni su WJ"
   site-url: "https://soci.witnessjournal.com"
