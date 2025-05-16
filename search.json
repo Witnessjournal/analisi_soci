@@ -1,5 +1,61 @@
 [
   {
+    "objectID": "storico.html",
+    "href": "storico.html",
+    "title": "Storico",
+    "section": "",
+    "text": "Avviso\n\n\n\nPagina in costruzione."
+  },
+  {
+    "objectID": "storico.html#sorgente-dati",
+    "href": "storico.html#sorgente-dati",
+    "title": "Storico",
+    "section": "Sorgente dati",
+    "text": "Sorgente dati\n\nI dati qui riportati sono stati estratti il 2025-05-16\nI dati classificati per settimane di calendario\nIl libro soci attualmente contiene 250 elementi"
+  },
+  {
+    "objectID": "storico.html#crescita-storica-dei-soci",
+    "href": "storico.html#crescita-storica-dei-soci",
+    "title": "Storico",
+    "section": "Crescita storica dei soci",
+    "text": "Crescita storica dei soci\nQuesto grafico riporta la crescita storica dei soci afferenti complessivi e afferenti ai gruppi territoriali più numerosi (con più di sei soci). Il grafico è interattivo.\n\n\n\n\n\n\n\n\n\nPer quanto riguarda la crescita effettiva, cioè depurata dei soci non che non hanno ancora rinnovato la quota associativa, il grafico è il seguente:"
+  },
+  {
+    "objectID": "situazione_soci.html",
+    "href": "situazione_soci.html",
+    "title": "Situazione Soci",
+    "section": "",
+    "text": "Avviso\n\n\n\nPagina in costruzione."
+  },
+  {
+    "objectID": "situazione_soci.html#sorgente-dati",
+    "href": "situazione_soci.html#sorgente-dati",
+    "title": "Situazione Soci",
+    "section": "Sorgente dati",
+    "text": "Sorgente dati\n\nI dati qui riportati sono stati estratti il 2025-05-16\nIl libro soci attualmente contiene 250 elementi"
+  },
+  {
+    "objectID": "situazione_soci.html#posizione-associativa",
+    "href": "situazione_soci.html#posizione-associativa",
+    "title": "Situazione Soci",
+    "section": "Posizione associativa",
+    "text": "Posizione associativa\nRisultano iscritti 250 soci con le seguenti posizioni associative:\n\n\n\n\n\nStato\nNumero\n\n\n\n\nIn regola\n160\n\n\nDeve rinnovare\n90\n\n\n\n\n\n\nSu 250 soci, 245 sono in Italia\nA livello nazionale, i soci sono distribuiti in 57 province, di cui:\n\n\n\n\n\n\nProvincia\nM\nF\nTotale\n\n\n\n\nBO\n27\n35\n62\n\n\nTN\n18\n9\n27\n\n\nMI\n11\n15\n26\n\n\nPR\n6\n6\n12\n\n\nRM\n5\n5\n10\n\n\nLO\n6\n3\n9\n\n\nGE\n6\n2\n8\n\n\nFI\n4\n2\n6\n\n\nUD\n2\n4\n6\n\n\n\n\n\nLe provice con il maggior numero di quote non rinnovate ad oggi sono:\n\n\n\n\n\nprovincia\nSoci\nSoci in regola\nSoci da rinnovare\n\n\n\n\nBO\n62\n48\n14\n\n\nMI\n26\n13\n13\n\n\nGE\n8\n3\n5\n\n\nRM\n10\n5\n5\n\n\nLO\n9\n5\n4\n\n\nTN\n27\n23\n4\n\n\nFI\n6\n3\n3\n\n\nPR\n12\n9\n3\n\n\nBS\n2\n0\n2\n\n\nCA\n3\n1\n2"
+  },
+  {
+    "objectID": "situazione_soci.html#distribuzione-di-età",
+    "href": "situazione_soci.html#distribuzione-di-età",
+    "title": "Situazione Soci",
+    "section": "Distribuzione di età",
+    "text": "Distribuzione di età\nL’ètà dei soci è così distribuita:\n\n\n\n\n\n\n\n\n\n\n\n\nDistribuzione per quantili di età\n\n\nQuantile\nEtà\n\n\n\n\n0%\n10\n\n\n25%\n42\n\n\n50%\n52\n\n\n75%\n62\n\n\n100%\n90"
+  },
+  {
+    "objectID": "situazione_soci.html#distribuzione-per-genere",
+    "href": "situazione_soci.html#distribuzione-per-genere",
+    "title": "Situazione Soci",
+    "section": "Distribuzione per genere",
+    "text": "Distribuzione per genere\nQueste tabelle riportano la distribuzione per genere ed età, e la prevalenza di genere per ciascuna provincia.\n\n\n\n\n\nDistribuzione per genere ed età\n\n\nGenere\nNum.\nEtà\nmin-max\n\n\n\n\nFemmina\n116\n49.5\n10-79\n\n\nMaschio\n134\n53.3\n23-90\n\n\n\n\n\n\n\n\n\n\n\nPrevalenza di genere su base geografica\n\n\nPrevalenza\nNumero province\n\n\n\n\nFemmine\n27\n\n\nMaschi\n30"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Informazioni sull’Associazione",
@@ -19,61 +75,5 @@
     "title": "Informazioni sull’Associazione",
     "section": "Storico",
     "text": "Storico\nLa pagina Storico presenta un’evoluzione storica dell’associazione, a partire dall’Aprile 2025."
-  },
-  {
-    "objectID": "situazione_soci.html",
-    "href": "situazione_soci.html",
-    "title": "Situazione Soci",
-    "section": "",
-    "text": "Avviso\n\n\n\nPagina in costruzione."
-  },
-  {
-    "objectID": "situazione_soci.html#sorgente-dati",
-    "href": "situazione_soci.html#sorgente-dati",
-    "title": "Situazione Soci",
-    "section": "Sorgente dati",
-    "text": "Sorgente dati\n\nI dati qui riportati sono stati estratti il 2025-05-12\nIl libro soci attualmente contiene 246 elementi"
-  },
-  {
-    "objectID": "situazione_soci.html#posizione-associativa",
-    "href": "situazione_soci.html#posizione-associativa",
-    "title": "Situazione Soci",
-    "section": "Posizione associativa",
-    "text": "Posizione associativa\nRisultano iscritti 246 soci con le seguenti posizioni associative:\n\n\n\n\n\nStato\nNumero\n\n\n\n\nIn regola\n156\n\n\nDeve rinnovare\n90\n\n\n\n\n\n\nSu 246 soci, 241 sono in Italia\nA livello nazionale, i soci sono distribuiti in 57 province, di cui:\n\n\n\n\n\n\nProvincia\nM\nF\nTotale\n\n\n\n\nBO\n27\n35\n62\n\n\nMI\n11\n15\n26\n\n\nTN\n16\n7\n23\n\n\nPR\n6\n6\n12\n\n\nRM\n5\n5\n10\n\n\nLO\n6\n3\n9\n\n\nGE\n6\n2\n8\n\n\nFI\n4\n2\n6\n\n\nUD\n2\n4\n6\n\n\n\n\n\nLe provice con il maggior numero di quote non rinnovate ad oggi sono:\n\n\n\n\n\nprovincia\nSoci\nSoci in regola\nSoci da rinnovare\n\n\n\n\nBO\n62\n48\n14\n\n\nMI\n26\n13\n13\n\n\nGE\n8\n3\n5\n\n\nRM\n10\n5\n5\n\n\nLO\n9\n5\n4\n\n\nTN\n23\n19\n4\n\n\nFI\n6\n3\n3\n\n\nPR\n12\n9\n3\n\n\nBS\n2\n0\n2\n\n\nCA\n3\n1\n2"
-  },
-  {
-    "objectID": "situazione_soci.html#distribuzione-di-età",
-    "href": "situazione_soci.html#distribuzione-di-età",
-    "title": "Situazione Soci",
-    "section": "Distribuzione di età",
-    "text": "Distribuzione di età\nL’ètà dei soci è così distribuita:\n\n\n\n\n\n\n\n\n\n\n\n\nDistribuzione per quantili di età\n\n\nQuantile\nEtà\n\n\n\n\n0%\n10\n\n\n25%\n42\n\n\n50%\n52\n\n\n75%\n62\n\n\n100%\n90"
-  },
-  {
-    "objectID": "situazione_soci.html#distribuzione-per-genere",
-    "href": "situazione_soci.html#distribuzione-per-genere",
-    "title": "Situazione Soci",
-    "section": "Distribuzione per genere",
-    "text": "Distribuzione per genere\nQueste tabelle riportano la distribuzione per genere ed età, e la prevalenza di genere per ciascuna provincia.\n\n\n\n\n\nDistribuzione per genere ed età\n\n\nGenere\nNum.\nEtà\nmin-max\n\n\n\n\nFemmina\n114\n49.7\n10-79\n\n\nMaschio\n132\n53.2\n23-90\n\n\n\n\n\n\n\n\n\n\n\nPrevalenza di genere su base geografica\n\n\nPrevalenza\nNumero province\n\n\n\n\nFemmine\n27\n\n\nMaschi\n30"
-  },
-  {
-    "objectID": "storico.html",
-    "href": "storico.html",
-    "title": "Storico",
-    "section": "",
-    "text": "Avviso\n\n\n\nPagina in costruzione."
-  },
-  {
-    "objectID": "storico.html#sorgente-dati",
-    "href": "storico.html#sorgente-dati",
-    "title": "Storico",
-    "section": "Sorgente dati",
-    "text": "Sorgente dati\n\nI dati qui riportati sono stati estratti il 2025-05-12\nI dati classificati per settimane di calendario\nIl libro soci attualmente contiene 246 elementi"
-  },
-  {
-    "objectID": "storico.html#crescita-storica-dei-soci",
-    "href": "storico.html#crescita-storica-dei-soci",
-    "title": "Storico",
-    "section": "Crescita storica dei soci",
-    "text": "Crescita storica dei soci\nQuesto grafico riporta la crescita storica dei soci afferenti complessivi e afferenti ai gruppi territoriali più numerosi (con più di sei soci). Il grafico è interattivo.\n\n\n\n\n\n\n\n\n\nPer quanto riguarda la crescita effettiva, cioè depurata dei soci non che non hanno ancora rinnovato la quota associativa, il grafico è il seguente:"
   }
 ]
