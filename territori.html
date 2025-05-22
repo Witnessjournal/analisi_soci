@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Informazioni sull’Associazione – Informazioni su WJ</title>
+<title>Gruppi territoriali – Informazioni su WJ</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,6 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./images/Logo_nero.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -41,6 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-7a53108a412e775e11eaab9741ccdc9e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/bootstrap-icons-1.11.1/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +71,65 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Ricerca"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-territori .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-territori'] = new List('listing-territori', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -93,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./territori.html"> 
+    <a class="nav-link active" href="./territori.html" aria-current="page"> 
 <span class="menu-text">Territori</span></a>
   </li>  
   <li class="nav-item">
@@ -120,17 +181,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">In questa pagina</h2>
    
   <ul>
-  <li><a href="#situazione-soci" id="toc-situazione-soci" class="nav-link active" data-scroll-target="#situazione-soci">Situazione soci</a></li>
-  <li><a href="#storico" id="toc-storico" class="nav-link" data-scroll-target="#storico">Storico</a></li>
+  <li><a href="#cosa-sono" id="toc-cosa-sono" class="nav-link active" data-scroll-target="#cosa-sono">Cosa sono</a></li>
   </ul>
 </nav>
-    </div>
+    <h5 class="quarto-listing-category-title">Categorie</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Tutti <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Informazioni sull’Associazione</h1>
+<h1 class="title">Gruppi territoriali</h1>
 </div>
 
 
@@ -138,6 +198,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">22 maggio 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -147,14 +213,77 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Queste pagine contengono alcune analisi sull’associazione <a href="https://witnessjournal.org/">Witness Journal</a>, in particolare sui soci e le socie. I dati sono stati raccolti in modo anonimo e non contengono informazioni identificative. Le analisi sono state effettuate per scopi informativi e statistici, senza alcuna intenzione di violare la privacy dei soci e delle socie.</p>
-<section id="situazione-soci" class="level2">
-<h2 class="anchored" data-anchor-id="situazione-soci">Situazione soci</h2>
-<p>La pagina <a href="./situazione_soci.html">Situazione soci</a> contiene un’analisi dello stato attuale dell’associazione, tipicamente aggiornato ogni settimana.</p>
-</section>
-<section id="storico" class="level2">
-<h2 class="anchored" data-anchor-id="storico">Storico</h2>
-<p>La pagina <a href="./storico.html">Storico</a> presenta un’evoluzione storica dell’associazione, a partire dall’Aprile 2025.</p>
+<section id="cosa-sono" class="level1">
+<h1>Cosa sono</h1>
+<div id="listing-territori" class="quarto-listing quarto-listing-container-grid">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-territori-sort" class="form-select" aria-label="Ordinare per" onchange="window['quarto-listings']['listing-territori'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Ordinare per</option>
+      <option value="index" data-direction="asc">Predefinito</option>
+      <option value="listing-title" data-direction="asc">
+        Titolo
+      </option>
+      <option value="listing-author" data-direction="asc">
+        Autore/Autrice
+      </option>
+    </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filtro">
+    </div>
+</div>
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1747872000000" data-listing-file-modified-sort="1747922584901" data-listing-date-modified-sort="1747872000000" data-listing-reading-time-sort="1" data-listing-word-count-sort="132">
+<a href="./territori/Bologna.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="https://witnessjournal.com/wp-content/uploads/2025/01/Massimo-Mengoli_004.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title" data-anchor-id="cosa-sono">
+<i class="bi-geo " style="" role="img" aria-hidden="true"></i> Il Gruppo WJ di Bologna
+</h5>
+<div class="listing-reading-time card-text text-muted">1 minuti</div>
+<div class="card-text listing-description delink">
+Questa pagina è in costruzione
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Lorenzo Perone
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-date-sort="1747872000000" data-listing-file-modified-sort="1747922584901" data-listing-date-modified-sort="1747872000000" data-listing-reading-time-sort="1" data-listing-word-count-sort="199">
+<a href="./territori/Trento.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="https://photos.smugmug.com/Cronache/Trans-March-Teo/i-QDdFLbd/0/MBTTffhGRKpWZnPBrRdvnWfdPGV8BCjZs3VB9Jz5K/X3/DSCF9359-155-X3.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<i class="bi-geo " style="" role="img" aria-hidden="true"></i> Il Gruppo WJ di Trento
+</h5>
+<div class="listing-reading-time card-text text-muted">1 minuti</div>
+<div class="card-text listing-description delink">
+Il Gruppo WJ di Trento si è formato nella primavera del 2021. Il gruppo si riunisce ogni secondo mercoledì del mese per coordinare le attività.
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Paolo Bosetti
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">Nessun risultato</div>
+</div>
+
 
 
 </section>
