@@ -11,6 +11,8 @@ website:
   description: "Dati sull'Associazione WJ"
   navbar:
     left:
+      - text: "Territori"
+        href: territori.qmd
       - text: "Situazione Soci"
         href: situazione_soci.qmd
       - text: "Storico"

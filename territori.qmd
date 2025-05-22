@@ -1,0 +1,19 @@
+---
+title: "Gruppi territoriali"
+date: today
+format: html
+listing:
+  id: territori
+  sort: "title"
+  type: grid
+  contents: territori
+  fields: [title, author, image, description, categories, reading-time]
+  categories: numbered
+  sort-ui: true
+  filter-ui: true
+---
+
+# Cosa sono
+
+:::{#territori}
+:::

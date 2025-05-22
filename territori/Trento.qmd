@@ -1,0 +1,65 @@
+---
+title: "{{< bi geo >}} Il Gruppo WJ di Trento"
+author: "Paolo Bosetti"
+date: 05-22-2025
+date-modified: today
+format: html
+image: https://photos.smugmug.com/Cronache/Trans-March-Teo/i-QDdFLbd/0/MBTTffhGRKpWZnPBrRdvnWfdPGV8BCjZs3VB9Jz5K/X3/DSCF9359-155-X3.jpg
+lightbox: true
+params:
+  provincia: "TN"
+---
+
+```{r setup}
+#| echo: false
+#| include: false
+#| warning: false
+library(tidyverse)
+source("../wj_utils.R")
+
+soci <- wj_data(wj_tokens()) %>% wj_soci(province_file = "../data/province.txt") %>% 
+  filter(provincia == params["provincia"] & !deve_rinnovare)
+
+N <- soci %>% 
+  group_by(Provincia = provincia, genere) %>% 
+  summarise(
+    Numero = n(),
+    .groups = "keep"
+  ) %>% 
+  ungroup() %>% 
+  select(-Provincia) %>% 
+  pull(Numero, name=genere)
+
+NT <- sum(N)
+```
+
+
+:::{layout-ncol=4}
+![Giornata contro la transfobia (M. Morelli)](https://photos.smugmug.com/Cronache/Trans-March-Teo/i-QDdFLbd/0/MBTTffhGRKpWZnPBrRdvnWfdPGV8BCjZs3VB9Jz5K/X3/DSCF9359-155-X3.jpg){.lightbox group="gallery"}
+
+![Carnevale Egettsman (A. La Gumina)](https://photos.smugmug.com/Egetmann/Alex/i-VD7LxH8/0/MmbdQB8s7SDxX74qnqNKQfJ2M9Zq82s2wTx5hTtL6/X3/GL5A4129-X3.jpg){.lightbox group="gallery"}
+
+![8 Marzo: Sciopero transfemminista (P. Bosetti)](https://photos.smugmug.com/Cronache/NonUnaDiMeno/2025/Corteo/i-3vzZ7MG/0/LxCSDdVnBpfSH5VmMNf5gdbV7Prt5QcGRc883VxrF/X3/PBT51371-X3.jpg){.lightbox group="gallery"}
+
+![Vita in Malga (G. Pantò)](https://photos.smugmug.com/Paolos-Take/i-rg4H8Wz/1/MBr6G6zW6MGNHhdknQvrn4HHfvtwJNGwwgHcF26sS/X3/Giulia%20Pantò_Vita%20in%20Malga-16-Enhanced-NR-X3.jpg){.lightbox group="gallery"}
+:::
+
+# {{< bi info-circle >}} Informazioni 
+
+Il Gruppo WJ di Trento si è formato nella primavera del 2021. Il gruppo si riunisce ogni secondo mercoledì del mese per coordinare le attività.
+
+I membri del gruppo sono attivi in:
+
+- formazione: organizzazione di corsi e serate a tema
+- progetti collettivi: organizzano e seguono progetti di documentazione fotografica di temi legati al territorio trentino. Questi progetti terminano generalmente con una mostra fotografica (vedi [il sito](https://wjtrento.smugmug.com) per dettagli).
+
+
+# {{< bi people >}} Membri attivi
+
+Il gruppo è composto da **`r NT` socie e soci**, di cui `r N["F"]` donne e `r N["M"]` uomini. L'età media è di `r round(mean(soci$età, na.rm=TRUE))` anni.
+
+# {{< bi envelope >}} Contatti
+
+* *Referente*: Paolo Bosetti ([email ](mailto:paolo.bosetti@witnessjournal.com))
+* *Sito web*: [wjtrento.smugmug.com](https://wjtrento.smugmug.com)
+* *Instagram*: [@wjtrento](https://www.instagram.com/wjtrento/)

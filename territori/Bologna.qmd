@@ -1,0 +1,61 @@
+---
+title: "{{< bi geo >}} Il Gruppo WJ di Bologna"
+author: "Lorenzo Perone"
+date: 05-22-2025
+date-modified: today
+format: html
+image: https://witnessjournal.com/wp-content/uploads/2025/01/Massimo-Mengoli_004.jpg
+lightbox: true
+params:
+  provincia: "BO"
+---
+
+```{r setup}
+#| echo: false
+#| include: false
+#| warning: false
+library(tidyverse)
+source("../wj_utils.R")
+
+soci <- wj_data(wj_tokens()) %>% wj_soci(province_file = "../data/province.txt") %>% 
+  filter(provincia == params["provincia"] & !deve_rinnovare)
+
+N <- soci %>% 
+  group_by(Provincia = provincia, genere) %>% 
+  summarise(
+    Numero = n(),
+    .groups = "keep"
+  ) %>% 
+  ungroup() %>% 
+  select(-Provincia) %>% 
+  pull(Numero, name=genere)
+
+NT <- sum(N)
+```
+
+
+:::{layout-ncol=4}
+![Bologina Life (M. Mengoli))](https://witnessjournal.com/wp-content/uploads/2025/01/Massimo-Mengoli_004.jpg){.lightbox group="gallery"}
+
+![Bolognina Life (C. Cantù) (A. La Gumina)](https://witnessjournal.com/wp-content/uploads/2025/01/Claudio-Cantu_001.jpg){.lightbox group="gallery"}
+
+![Bolognina Life (L. Perone))](https://witnessjournal.com/wp-content/uploads/2025/01/Lorenzo-Perone_010.jpg){.lightbox group="gallery"}
+
+![Bolognina Life (F. Mariani)](https://witnessjournal.com/wp-content/uploads/2025/01/Franca-Mariani_003.jpg){.lightbox group="gallery"}
+:::
+
+# {{< bi info-circle >}} Informazioni 
+
+::: callout-note
+Questa pagina è in costruzione
+:::
+
+
+# {{< bi people >}} Membri attivi
+
+Il gruppo è composto da **`r NT` socie e soci**, di cui `r N["F"]` donne e `r N["M"]` uomini. L'età media è di `r round(mean(soci$età, na.rm=TRUE))` anni.
+
+# {{< bi envelope >}} Contatti
+
+* *Referente*: Lorenzo Perone ([email ](mailto:lorenzo.perone@witnessjournal.com))
+* *Instagram*: [@witnessjournal](https://www.instagram.com/witnessjournal/)
