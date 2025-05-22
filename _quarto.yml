@@ -11,11 +11,11 @@ website:
   description: "Dati sull'Associazione WJ"
   navbar:
     left:
-      - text: "Territori"
+      - text: "{{< bi geo >}} Territori"
         href: territori.qmd
-      - text: "Situazione Soci"
+      - text: "{{< bi bar-chart >}} Situazione Soci"
         href: situazione_soci.qmd
-      - text: "Storico"
+      - text: "{{< bi graph-up >}} Storico"
         href: storico.qmd
 format:
   html:

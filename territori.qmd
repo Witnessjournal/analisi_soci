@@ -1,5 +1,5 @@
 ---
-title: "Gruppi territoriali"
+title: "{{< bi geo >}} Gruppi territoriali"
 date: today
 format: html
 listing:
@@ -13,7 +13,13 @@ listing:
   filter-ui: true
 ---
 
-# Cosa sono
+# {{<bi info-circle>}} Cosa sono
+
+L'associazione WitnessJournal è fatta da socie e soci distribuiti su [quasi tutto il paese](/situazione_soci.html#distribuzione-per-genere). In alcune città e province i soci si riuniscono in **gruppi territoriali**, collaborando a progetti fotografici e attività in genere legate alla missione dell'associazione. 
+
+Di seguito potete trovare un elenco dei principali gruppi territoriali al momento attivo. Se nella [vostra provincia](/situazione_soci.html) non esiste un gruppo, potete organizzarlo voi stessi! contattate il [direttivo](mailto:direttivo@witnessjournal.com) dell'associazione **dal vostro indirizzo email @witnessjournal.com** per sapere come fare.
+
+# {{<bi list>}} Elenco dei gruppi attivi
 
 :::{#territori}
 :::

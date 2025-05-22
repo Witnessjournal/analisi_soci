@@ -1,5 +1,5 @@
 ---
-title: "Storico"
+title: "{{< bi graph-up >}} Storico"
 date: today
 format: html
 ---

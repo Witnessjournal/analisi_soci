@@ -1,6 +1,6 @@
 ---
 title: |
-  Situazione Soci
+  {{< bi bar-chart >}} Situazione Soci
 subtitle: |
   Analisi della composizione sociale
 date: today
