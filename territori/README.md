@@ -2,15 +2,15 @@
 
 Questa cartella contiene le pagine dedicate ai territori. L'indice delle pagine è automaticamente aggiornato con una nuova scheda per ogni file con estensione `.qmd` in questa cartella.
 
-I file `.qmd` sono documenti [quarto](https://quarto.org/docs/guide/){target="_blank"}, formattati in Markdown, con alcune funzionalità aggiuntive per la formattazione più avanzata e per la possibilità per integrare blocchi di codice R o Python. Questi blocchi vegono eseguiti **al momento della generazione del sito** e il loro output viene incluso nel documento finale. 
+I file `.qmd` sono documenti [quarto](https://quarto.org/docs/guide/), formattati in Markdown, con alcune funzionalità aggiuntive per la formattazione più avanzata e per la possibilità per integrare blocchi di codice R o Python. Questi blocchi vegono eseguiti **al momento della generazione del sito** e il loro output viene incluso nel documento finale. 
 
-Il sito viene generato direttamente da una GitHub action ogni volta che viene fatto un push sul branch `main`. Per generare il sito in locale (preview), è necessario installare [quarto](https://quarto.org/docs/get-started/installation/){target="_blank"} e [R](https://cran.r-project.org/){target="_blank"} (o [Python](https://www.python.org/downloads/){target="_blank"} se si usano blocchi di codice Python). Una volta installati, è possibile generare il sito con il comando:
+Il sito viene generato direttamente da una GitHub action ogni volta che viene fatto un push sul branch `main`. Per generare il sito in locale (preview), è necessario installare [quarto](https://quarto.org/docs/get-started/installation/) e [R](https://cran.r-project.org/) (o [Python](https://www.python.org/downloads/) se si usano blocchi di codice Python). Una volta installati, è possibile generare il sito con il comando:
 
 ```bash
 quarto preview
 ```
 
-Per lo sviluppo, si consiglia l'uso di RStudio ([posit.co](https://posit.co){target="_blank"}) oppure, in seconda battuta, Visual Studio Code con le estensioni per Quarto.
+Per lo sviluppo, si consiglia l'uso di RStudio ([posit.co](https://posit.co)) oppure, in seconda battuta, Visual Studio Code con le estensioni per Quarto.
 
 ## Preambolo
 
